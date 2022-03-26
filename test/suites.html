@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet"
+          href="http://unpkg.com/jest-lite@1.0.0-alpha.4/dist/prettify.css"
+    />
+    <script crossorigin
+            src="http://unpkg.com/jest-lite@1.0.0-alpha.4/dist/core.js"
+    ></script>
+    <script crossorigin
+            src="http://unpkg.com/jest-lite@1.0.0-alpha.4/dist/prettify.js"></script>
+
+    <title>Test suites</title>
+</head>
+<body>
+CASE1: <bmi-score name="Mr Nash" score="88.89" ></bmi-score>
+CASE2: <bmi-score></bmi-score>
+<script src="../bmi-web-component.js"></script>
+    <script>
+        const {
+            core: {describe, it, expect, run},
+            prettify,
+        } = window.jestLite;
+
+        // document.body.innerHTML = `<bmi-score name="Mr Nash" score="88.89" ></bmi-score>`
+
+
+        describe('test bmi score', () => {
+            it('normal data case', () => {
+                const elem = document.body.getElementsByTagName('bmi-score')[0].shadowRoot.childNodes[3];
+                const title = elem.getElementsByTagName('h3')[0].innerText;
+                const score = elem.getElementsByTagName('h2')[0].innerText;
+
+                expect(score).toContain('88.89');
+                expect(title).toContain('Mr Nash\'s BMI');
+
+                const normalRange =  elem.getElementsByClassName('normal-range')[0];
+                const underweightRange =  elem.getElementsByClassName('underweight-range')[0];
+                const overweightRange =  elem.getElementsByClassName('overweight-range')[0];
+
+                expect(normalRange.classList.contains('active')).toBe(true);
+                expect(underweightRange.classList.contains('active')).toBe(false);
+                expect(overweightRange.classList.contains('active')).toBe(false);
+            });
+            it('empty attributes case', () => {
+                const elem = document.body.getElementsByTagName('bmi-score')[1].shadowRoot.childNodes[3];
+                const title = elem.getElementsByTagName('h3')[0];
+                const score = elem.getElementsByTagName('h2')[0];
+
+                expect(score).toBe(undefined);
+                expect(title).toBe(undefined);
+
+                const normalRange =  elem.getElementsByClassName('normal-range')[0];
+                const underweightRange =  elem.getElementsByClassName('underweight-range')[0];
+                const overweightRange =  elem.getElementsByClassName('overweight-range')[0];
+
+                expect(normalRange.classList.contains('active')).toBe(false);
+                expect(underweightRange.classList.contains('active')).toBe(true);
+                expect(overweightRange.classList.contains('active')).toBe(false);
+            })
+        })
+
+        prettify.toHTML(run(), document.body);
+    </script>
+</body>
+</html>
