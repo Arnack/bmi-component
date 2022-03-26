@@ -2,10 +2,7 @@
   "name": "bmi-component",
   "version": "1.0.0",
   "description": "bmi visualization",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "index.html",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Arnack/bmi-component.git"
@@ -15,5 +12,5 @@
   "bugs": {
     "url": "https://github.com/Arnack/bmi-component/issues"
   },
-  "homepage": "https://github.com/Arnack/bmi-component#readme",
+  "homepage": "https://github.com/Arnack/bmi-component#readme"
 }
