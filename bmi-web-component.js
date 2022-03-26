@@ -7,6 +7,7 @@ const makeTemplate = (name, score, width) => {
         margin: 60px;
         width: ${width || 'initial'};
         min-width: 300px;
+        font-family: Roboto, Arial, sans-serif;
     }
     h3, h2 {
       text-align: center;
